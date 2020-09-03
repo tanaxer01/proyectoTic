@@ -1,0 +1,177 @@
+{% extends 'layout.html' %}
+{% block body%} 
+
+
+    
+    <div id="error"></div>
+
+    <div class="container" >
+
+    {% if alerta %}
+    <p>[Error] Nombre ya existente </p>
+    {% endif %}
+
+    <form action ="simular" id = "formulario" onsubmit="return revisar();" method = "POST"> 
+        
+        <label class= "mm" for="nombre">Nombre de la simulacion</label><br>
+        <input type="text" class="form-control" id="nombre" name="nombre" size="70" maxlength="60" placeholder="60 caracteres maximo" required><br>
+
+        <div class="row">
+            <div class="col-4">
+                <label for="horasDiarias">Horas diarias de atencion</label>
+                <input type="number" class="form-control" id="horasDiarias" name="horasDiarias" min="1" max="24" placeholder="" required>
+            </div>
+            <div class="col-4">
+                <label for="nPasos">Numero de pasos</label>
+                <input type="number" class="form-control" id="nPasos" name="nPasos" min="10" placeholder="" required>
+            </div>
+            <div class="col-4">
+                <label for="nClient">Numero de clientes por dia</label>
+                <input type="number" class="form-control" id="nClient" name="nClient" min="0" placeholder="" required>    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="distribucion1"> Distribucion porcentual de clientes por dia</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion1" name="distribucion1" size="1" step="1" max="100" min="0" placeholder="D1" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion2" name="distribucion2" size="1" step="1" max="100" min="0" placeholder="D2" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion3" name="distribucion3" size="1" step="1" max="100" min="0" placeholder="D3" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion4" name="distribucion4" size="1" step="1" max="100" min="0" placeholder="D4" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion5" name="distribucion5" size="1" step="1" max="100" min="0" placeholder="D5" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion6" name="distribucion6" size="1" step="1" max="100" min="0" placeholder="D6" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion7" name="distribucion7" size="1" step="1" max="100" min="0" placeholder="D7" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion8" name="distribucion8" size="1" step="1" max="100" min="0" placeholder="D8" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion9" name="distribucion9" size="1" step="1" max="100" min="0" placeholder="D9" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="distribucion10" name="distribucion10" size="2" step="1" max="100" min="0" placeholder="D10" required>
+            </div>
+        </div>   
+        <div class="row" >
+            <div class="col" >
+                <label for="caja1">Cajas abiertas por intervalo </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <input type="number" class="form-control" id="caja1" name="caja1" size="1" step="1" min="1" placeholder="C1" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="caja2" name="caja2" size="1" step="1" min="1" placeholder="C2" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="caja3" name="caja3" size="1" step="1" min="1" placeholder="C3" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="caja4" name="caja4" size="1" step="1" min="1" placeholder="C4" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="caja5" name="caja5" size="1" step="1" min="1" placeholder="C5" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="caja6" name="caja6" size="1" step="1" min="1" placeholder="C6" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="caja7" name="caja7" size="1" step="1" min="1" placeholder="C7" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control"id="caja8" name="caja8" size="1" step="1" min="1" placeholder="C8" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="caja9" name="caja9" size="1" step="1" min="1" placeholder="C9" required>
+            </div>
+            <div class="col-1">
+                <input type="number" class="form-control" id="caja10" name="caja10" size="1" step="1" min="1" placeholder="C10" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <label for="cantMin">Cantidad minima de productos por cliente</label><br>
+                <input type="number" class="form-control" id="cantMin" name="cantMin" min="1" placeholder="" required>
+            </div >
+            <div class="col-6">
+                <label for="cantMax">Cantidad maxima de productos por cliente</label><br>
+                <input type="number" class="form-control" id="cantMax" name="cantMax" placeholder="" required>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="tSelect">Segundos promedio de seleccion por producto </label><br>
+                <input type="number" class="form-control" id="tSelect" name="tSelect" min="1" placeholder="" required>
+            </div>
+            <div class="col-4">
+                <label for="tDesp">Segundos promedio de despacho por producto </label><br>
+                <input type="number" class="form-control" id="tDesp" name="tDesp" min="1" placeholder="" required>
+            </div>
+            <div class="col-4">
+                <label for="tPago">Segundos promedio de pago por producto </label><br>
+                <input type="number" class="form-control" id="tPago" name="tPago" min="1" placeholder="" required>
+            </div>
+        </div>
+        <center><input type="submit" class="btn btn-secondary my-2" value="Comenzar"></center>
+
+    </form>
+</div>
+
+
+<style>
+    footer{
+        margin-top: 30px;
+    }
+    div{
+        margin-top:5px;
+    }
+    .mm{
+        margin: 5px;
+    }
+
+    
+</style>
+<footer>
+    
+</footer>
+
+<script >
+    var error = document.getElementById('error');
+    error.style.color = 'red';
+    
+        function revisar(){
+    
+            var totalP = parseInt(distribucion1.value) + parseInt( distribucion2.value) + parseInt( distribucion3.value) + parseInt(distribucion4.value) + parseInt( distribucion5.value)+ parseInt( distribucion6.value)+ parseInt( distribucion7.value)+ parseInt( distribucion8.value)+ parseInt( distribucion9.value)+ parseInt( distribucion10.value) ;
+            
+    
+            if (totalP != 100) {
+                console.log(totalP);
+                alert('[ERROR] El campo distribuciones debe tener un valor total de 100%, su suma actual es de '+ totalP+'%');
+                return false;
+            }
+            else if (cantMax.value <= cantMin.value ) {
+                alert('[ERROR] El campo de Cantidad Maxima de Productos debe tener un valor mayor al de Cantidad Minima de Productos');
+                return false;
+            }
+        }
+    
+    </script>
+
+{% endblock %}

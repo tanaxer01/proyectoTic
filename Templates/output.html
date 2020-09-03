@@ -1,0 +1,166 @@
+{% extends 'layout.html' %}
+{% block body %} 
+
+<style>
+    .titulo{
+        text-align: center;
+    }
+</style>
+
+<br>
+<h1 class="titulo">Datos de la simulacion actual</h1>
+<br>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-6">
+            <table class="table table-bordered ">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Tipo de Parametro</th>
+                    <th scope="col">Parametros de Salida</th>            
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  <tr>
+                    <th scope="row">Minutos totales de la simulacion</th>
+                    <td>{{resultsSim[0]}}</td>
+                  </tr>
+                  {% for i in range(1,11)  %}
+                  <tr class="bg-dark text-white">
+                    <th scope="row" colspan="2">Datos intervalo {{i}}</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">Cantidad de clientes ingresados</th>
+                    <td>{{resultsSim[i][0]}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Cantidad de clientes despachados</th>
+                    <td>{{resultsSim[i][1]}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Promedio productos por cliente despachado</th>
+                    <td>{{resultsSim[i][2]}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Promedio de clientes en espera en colas de Caja</th>
+                    <td>{{resultsSim[i][3]}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Longitud máxima de cola de espera de Caja</th>
+                    <td>{{resultsSim[i][4]}}</td>
+                  </tr>
+                  
+
+                  {% endfor %}
+                
+
+
+                </tbody>
+                
+            </table>
+        </div>
+        
+        <div class="col-6">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Tipo de Parametro</th>
+                    <th scope="col">Parametros de Entrada</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Nombre de la simulacion</th>
+                    <td>{{resultados.0}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Horas de la simulacion</th>
+                    <td>{{resultados.1}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Numero de pasos de la simulacion</th>
+                    <td>{{resultados.2}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Numero de clientes por dia</th>
+                    <td>{{resultados.3}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Distribucion porcentual de clientes</th>
+                    <td>{{resultados.4}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cajas abiertas por intervalos de la simulacion</th>
+                    <td>{{resultados.5}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cantidad minima de productos por cliente</th>
+                    <td>{{resultados.6}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cantidad maxima de productos por cliente</th>
+                    <td>{{resultados.7}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Segundos promedio de seleccion por productos</th>
+                    <td>{{resultados.8}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Segundos promedio de despacho por productos</th>
+                    <td>{{resultados.9}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Segundos promedio de pago por productos</th>
+                    <td>{{resultados.10}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+        
+        
+    </div>
+    <p>
+        <form action="guardar" method="POST">
+            <!-- Datos entrada -->
+            <input type="hidden" name="nombre" value="{{resultados.0}}">
+            <input type="hidden" name="horasDiarias" value="{{resultados.1}}">
+            <input type="hidden" name="nPasos" value="{{resultados.2}}">
+            <input type="hidden" name="nClient" value="{{resultados.3}}">
+            <input type="hidden" name="distribuciones" value="{{resultados.4}}">
+            <input type="hidden" name="cajas" value="{{resultados.5}}">
+            <input type="hidden" name="cantMin" value="{{resultados.6}}">
+            <input type="hidden" name="cantMax" value="{{resultados.7}}">
+            <input type="hidden" name="tSelect" value="{{resultados.8}}">
+            <input type="hidden" name="tDesp" value="{{resultados.9}}">
+            <input type="hidden" name="tPago" value="{{resultados.10}}">
+
+            <!-- Datos Salida-->
+            <input type="hidden" name="minutosSim" value="{{resultsSim[0]}}">
+            <input type="hidden" name="sim1" value="{{resultsSim[1]}}">
+            <input type="hidden" name="sim2" value="{{resultsSim[2]}}">
+            <input type="hidden" name="sim3" value="{{resultsSim[3]}}">
+            <input type="hidden" name="sim4" value="{{resultsSim[4]}}">
+            <input type="hidden" name="sim5" value="{{resultsSim[5]}}">
+            <input type="hidden" name="sim6" value="{{resultsSim[6]}}">
+            <input type="hidden" name="sim7" value="{{resultsSim[7]}}">
+            <input type="hidden" name="sim8" value="{{resultsSim[8]}}">
+            <input type="hidden" name="sim9" value="{{resultsSim[9]}}">
+            <input type="hidden" name="sim10" value="{{resultsSim[10]}}">
+
+            <input type="submit" class="btn btn-primary my-2" value="Guardar Datos">
+            <a href="/" class="btn btn-secondary my-2">Terminar</a>
+        </form>
+        
+    </p>
+
+</div>
+
+
+
+
+{% endblock%}

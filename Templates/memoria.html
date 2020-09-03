@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+{% block body%} 
+
+<style>
+    .titulo{
+        text-align: center;
+    }
+</style>
+
+<br>
+
+{% if not data %}
+<h1>No existen datos en la memoria </h1>
+
+{% else %}
+
+<h1 class="titulo">Datos guardados en la memoria</h1>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            
+            {% for resultado in data['cache'] %}
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Tipo de Dato</th>
+                    <th scope="col">Valor</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Nombre de la simulacion</th>
+                    <td>{{resultado['nombre']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Horas de la simulacion</th>
+                    <td>{{resultado['horas diarias']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Numero de pasos de la simulacion</th>
+                    <td>{{resultado['numero de pasos']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Numero de clientes por dia</th>
+                    <td>{{resultado['numero de clientes']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Distribucion porcentual de clientes</th>
+                    <td>{{resultado['distribucion por intervalos']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cajas abiertas por intervalos de la simulacion</th>
+                    <td>{{resultado['cajas por intervalo']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cantidad minima de productos por cliente</th>
+                    <td>{{resultado['cantidad minima de productos']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cantidad maxima de productos por cliente</th>
+                    <td>{{resultado['cantidad maxima de productos']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Segundos promedio de seleccion por productos</th>
+                    <td>{{resultado['tiempo de seleccion']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Segundos promedio de despacho por productos</th>
+                    <td>{{resultado['tiempo de despacho']}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Segundos promedio de pago por productos</th>
+                    <td>{{resultado['tiempo de pago']}}</td>
+                </tr>
+                </tbody>  
+            </table>
+                <form action="reInput" method="POST">
+                    <input type="hidden" name="nombre" value="{{resultado['nombre']}}">
+                    <input type="submit" class="btn btn-primary my-2" value="Editar Datos">
+                    <a href="/memoriasim/{{resultado['nombre']}}" class="btn btn-secondary my-2">Revisar simulaciones anteriores</a>
+                </form>
+            {% endfor %}
+        </div>
+    </div>   
+</div>
+{% endif %}
+
+
+
+
+
+{% endblock %}
